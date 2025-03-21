@@ -1,0 +1,7 @@
+POST https://dudavieiira.app.n8n.cloud/webhook/dce64f4b-204c-4db1-9b58-ca9ba1ab566a
+Content-Type: application/json
+
+{
+    "chatId": "12345678",
+    "mensagem": "VocÊ trabalha com react native?"
+}

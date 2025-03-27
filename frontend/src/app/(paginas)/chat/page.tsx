@@ -1,0 +1,46 @@
+"use client"
+
+import useChat from "@/hooks/useChat"
+import Image from "next/image"
+import { useState } from "react"
+
+export default function Chat() {
+	const { chatId, pensando, mensagens, adicionarMensagem, limparMensagens } = useChat()
+	const [texto, setTexto] = useState("")
+	return (
+		<div>
+			<h1>Chat</h1>
+			<h2>Chat ID: {chatId}</h2>
+			<button onClick={limparMensagens}>Limpar</button>
+
+			<ul>
+				{mensagens.map((mensagem) => (
+					<li key={mensagem.id} className="flex gap-2">
+						<div>{mensagem.autor}</div>
+						<div>{mensagem.texto}</div>
+					</li>
+				))}
+			</ul>
+
+			{pensando && (
+				<div>
+					<Image src="/pensando.gif" alt="Pensando" width={50} height={50} />
+				</div>
+			)}
+			<input
+				type="text"
+				value={texto}
+				className="border border-gray-700 rounded p-2"
+				onChange={(e: any) => {
+					setTexto(e.target.value)
+				}}
+				onKeyDown={(e: any) => {
+					if (e.key === "Enter") {
+						adicionarMensagem(texto)
+						setTexto("")
+					}
+				}}
+			/>
+		</div>
+	)
+}
